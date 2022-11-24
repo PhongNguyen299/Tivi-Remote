@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Remote</title>
+</head>
+<body>
+    <script>
+        const Remote = function (id){
+            this.id= id;
+
+            this.switchChannel = function (tivi){
+                let no = +prompt(`Enter Chanel want to switch:`)
+                if (no <= 10 && no >= 1) {
+                    tivi.channel = no;
+                } else {
+                    alert('Channel dont exist')
+                }
+                return `Switch ${this.channel}`
+            }
+
+            this.getVolume = function (volume){
+                this.volume =volume;
+            }
+        }
+
+        const TiVi = function (channel,volume,status){
+            this.channel = channel;
+            this.volume = volume;
+            this.status = status;
+
+            this.getChannel = function (){
+                alert('Tivi on:' + this.channel + "channel")
+                return this.channel;
+            }
+
+            this.isOn = function (){
+                alert('Tivi On');
+                this.status = true;
+            }
+
+            this.isOff = function (){
+                alert('Tivi Off');
+                this.status = false;
+            }
+
+            this.getVolume = function (){
+                alert('Volume:' + this.volume)
+                return this.volume;
+            }
+
+            this.changeVolume = function (){
+                let volumeC = +prompt('Enter volume:')
+                if (volumeC >=0 && volumeC <=100) {
+                    this.volume = volumeC;
+                }
+            }
+
+            this.changeChannel = function (remote,channel){
+                remote.switchChannel(this, channel)
+            }
+        }
+
+        const remote_1 = new Remote(1);
+        const tivi_1= new TiVi(3,50,true);
+
+        tivi_1.changeChannel(remote_1)
+
+    </script>
+</body>
+</html>
